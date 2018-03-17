@@ -30,3 +30,9 @@ Whenever you create a new container that must be exposed to the internet, just a
 ```bash
 $ docker run -e VIRTUAL_HOST=foo.bar.com  ...
 ```
+To add the lets-encrypt support, add the following environment variables as well:
+
+```
+LETSENCRYPT_HOST: example.com
+LETSENCRYPT_EMAIL: contact@example.com
+```
