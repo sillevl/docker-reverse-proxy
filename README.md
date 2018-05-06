@@ -30,9 +30,33 @@ Whenever you create a new container that must be exposed to the internet, just a
 ```bash
 $ docker run -e VIRTUAL_HOST=foo.bar.com  ...
 ```
+
+Add the following environment variables:
+* `VIRTUAL_HOST`
+* `VIRTUAL_PORT`
+
 To add the lets-encrypt support, add the following environment variables as well:
 
 ```
 LETSENCRYPT_HOST: example.com
 LETSENCRYPT_EMAIL: contact@example.com
+```
+
+### Virtual network:
+
+Before starting, create a network called `nginx-proxy` with:
+
+```
+docker networks create nginx-proxy
+```
+
+All containers that should be available using nginx-proxy should be added to this network:
+
+For example add the following to the docker-compose files:
+
+```
+networks:
+  default:
+    external:
+      name: nginx-proxy
 ```
